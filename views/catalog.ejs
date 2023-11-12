@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Catalog</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
+	<body>
+		<h1>Videogames</h1>
+		<a href="/catalog/genre">Genres</a>
+		<a href="/catalog/publisher">Publishers</a>
+		<% for (let i = 0; i < allVideogames.length; i++) { %>
+		<h2><a href="<%= allVideogames[i].url %>"><%= allVideogames[i].title %></a></h2>
+		<% } %>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= videogame.title %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
+	<body>
+		<h2 class="gamepage-title"><%= videogame.title %></h2>
+		<div class="gamepage__top-container">
+			<p class="gamepage-price"><%= videogame.price %>$</p>
+			<p><%= videogame.formatted_release_date %></p>
+		</div>
+		<p><%= videogame.description %></p>
+		<a href="/catalog/genre">Genres</a>
+		<a href="/catalog/publisher">Publishers</a>
+	</body>
+</html>

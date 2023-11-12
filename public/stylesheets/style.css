@@ -1,8 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00b7ff;
+}
+
+.gamepage-title {
+	font-size: 4rem;
+}
+
+.gamepage-price {
+	font-size: 2rem;
+}
+
+.gamepage__top-container {
+	display: flex;
+	align-items: center;
+	max-width: 30%;
+	gap: 2rem;
+	font-size: 1.5rem;
+	margin: 1rem 0;
 }
