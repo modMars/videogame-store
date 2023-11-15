@@ -1,4 +1,7 @@
-* {
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
@@ -27,4 +30,23 @@ a {
 	gap: 2rem;
 	font-size: 1.5rem;
 	margin: 1rem 0;
+}
+
+.videogame-create {
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+	margin-top: 1rem;
+}
+
+label {
+	font-size: 1.5rem;
+}
+
+input,
+textarea,
+select {
+	margin-top: 0.5rem;
+	margin-bottom: 1rem;
+	font-size: 1.125rem;
 }

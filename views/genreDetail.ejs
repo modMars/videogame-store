@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= genre.name %></title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
+	<body>
+		<h2 class="gamepage-title"><%= genre.name %></h2>
+		<div class="gamepage__top-container">
+			<p class="gamepage-price"><%= gameCount %> <%= genre.name %> games</p>
+		</div>
+		<p><%= genre.description %></p>
+		<% for( let index = 0; index < videogames.length; index++ ) { %>
+		<div class="game-card">
+			<h2 class="gamepage-title"><%= videogames[index].title %></h2>
+			<div class="gamepage__top-container">
+				<p class="gamepage-price"><%= videogames[index].price %>$</p>
+				<p><%= videogames[index].formatted_release_date %></p>
+			</div>
+		</div>
+		<p><%= videogames[index].description %></p>
+		<% } %>
+		<a href="/catalog/genre">Genres</a>
+		<a href="/catalog/publisher">Publishers</a>
+	</body>
+</html>
+
+<!-- genre: genreObj, games: gamesArr, gameCount: gamesArr.length  -->

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const { DateTime } = require('luxon')
 const Schema = mongoose.Schema
 
 const PublisherSchema = new Schema({
@@ -8,11 +8,11 @@ const PublisherSchema = new Schema({
 })
 
 PublisherSchema.virtual('url').get(function () {
-	return `/catalog/publisher/${this._id}`
+	return `/publisher/${this._id}`
 })
 
-VideogameSchema.virtual('formatted_foundation_date').get(function () {
-	return DateTime.fromJSDate(this.release_date).toLocaleString(DateTime.DATE_MED)
+PublisherSchema.virtual('formatted_foundation_date').get(function () {
+	return DateTime.fromJSDate(this.foundation_date).toLocaleString(DateTime.DATE_MED)
 })
 
 module.exports = mongoose.model('Publisher', PublisherSchema)

@@ -7,6 +7,8 @@ require('dotenv').config()
 
 const indexRouter = require('./routes/index')
 const catalogRouter = require('./routes/catalog')
+const genreRouter = require('./routes/genre')
+const publisherRouter = require('./routes/publisher')
 
 const app = express()
 
@@ -31,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/catalog', catalogRouter)
+app.use('/genre', genreRouter)
+app.use('/publisher', publisherRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

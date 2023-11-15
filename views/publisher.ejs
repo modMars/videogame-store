@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Publishers</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
+	<body>
+		<h1>Publishers</h1>
+		<a href="/catalog/">Catalog</a>
+		<a href="/genre">Genres</a>
+		<% for (let i = 0; i < publishers.length; i++) { %>
+		<h2><a href="<%= publishers[i].url %>"><%= publishers[i].name %></a></h2>
+		<% } %>
+	</body>
+</html>

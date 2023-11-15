@@ -51,8 +51,8 @@ async function main() {
 // We pass the index to the ...Create functions so that, for example,
 // genre[0] will always be the Fantasy genre, regardless of the order
 // in which the elements of promise.all's argument complete.
-async function genreCreate(index, name) {
-	const genre = new Genre({ name: name })
+async function genreCreate(index, name, description) {
+	const genre = new Genre({ name: name, description: description })
 	await genre.save()
 	genres[index] = genre
 	console.log(`Added genre: ${name}`)
@@ -90,13 +90,41 @@ async function videogameCreate(index, title, price, description, release_date, p
 async function createGenres() {
 	console.log('Adding genres')
 	await Promise.all([
-		genreCreate(0, 'Action'),
-		genreCreate(1, 'Adventure'),
-		genreCreate(2, 'Shooter'),
-		genreCreate(3, 'Platformer'),
-		genreCreate(4, 'RPG'),
-		genreCreate(5, 'Racing'),
-		genreCreate(6, 'Horror'),
+		genreCreate(
+			0,
+			'Action',
+			'Action games focus on physical challenges, hand-eye coordination, and reaction time. They often involve combat, exploration, and various challenges that require quick reflexes and skill.'
+		),
+		genreCreate(
+			1,
+			'Adventure',
+			'Adventure games emphasize story-driven experiences where players often assume the role of a character in a narrative-rich environment. These games typically involve exploration, puzzle-solving, and interaction with characters to progress through the story.'
+		),
+		genreCreate(
+			2,
+			'Shooter',
+			'Shooter games revolve around combat where players use firearms or other ranged weapons to eliminate enemies. The gameplay usually involves precise aiming and shooting skills, and these games can be first-person (FPS) or third-person (TPS) shooters.'
+		),
+		genreCreate(
+			3,
+			'Platformer',
+			'Platformer games focus on navigating characters through levels by jumping between platforms. They often involve overcoming obstacles, avoiding hazards, and timing jumps to progress. Classic examples include Super Mario Bros.'
+		),
+		genreCreate(
+			4,
+			'RPG',
+			'RPGs involve players taking on the roles of characters in a fictional world. These games often feature character development, storytelling, and decision-making. Players typically engage in quests, explore worlds, and gain experience points to improve their characters.'
+		),
+		genreCreate(
+			5,
+			'Racing',
+			'Racing games center around competitive driving or racing scenarios. Players can compete against computer-controlled opponents or other players, aiming to finish first in a race. These games often include a variety of vehicles and race tracks.'
+		),
+		genreCreate(
+			6,
+			'Horror',
+			'Horror games are designed to evoke fear and suspense in players. They often feature dark and eerie atmospheres, supernatural elements, or psychological horror. The gameplay may involve solving puzzles, surviving threats, or uncovering a mysterious storyline.'
+		),
 	])
 }
 

@@ -6,12 +6,13 @@ const Schema = mongoose.Schema
 const VideogameSchema = new Schema({
 	title: { type: String, required: true },
 	price: { type: Number, min: [1, 'Price must 1 or higher'], required: true },
-	description: { type: String },
-	release_date: { type: Date },
+	description: { type: String, required: true },
+	release_date: { type: Date, required: true },
 	publisher: { type: Schema.Types.ObjectId, ref: 'Publisher', required: true },
 	genre: [{ type: Schema.Types.ObjectId, ref: 'Genre' }],
 	stock: { type: Number, required: true },
 	platform: [{ type: String }],
+	cover: { type: String },
 })
 
 VideogameSchema.virtual('url').get(function () {
