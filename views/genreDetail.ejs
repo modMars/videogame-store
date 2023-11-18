@@ -5,6 +5,13 @@
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
+		<header>
+			<nav class="navbar">
+				<a href="/catalog">Catalog</a>
+				<a href="/genre">Genres</a>
+				<a href="/publisher">Publishers</a>
+			</nav>
+		</header>
 		<h2 class="gamepage-title"><%= genre.name %></h2>
 		<div class="gamepage__top-container">
 			<p class="gamepage-price"><%= gameCount %> <%= genre.name %> games</p>
@@ -20,8 +27,6 @@
 		</div>
 		<p><%= videogames[index].description %></p>
 		<% } %>
-		<a href="/catalog/genre">Genres</a>
-		<a href="/catalog/publisher">Publishers</a>
 	</body>
 </html>
 

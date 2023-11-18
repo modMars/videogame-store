@@ -5,9 +5,14 @@
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
+		<header>
+			<nav class="navbar">
+				<a href="/catalog">Catalog</a>
+				<a href="/genre">Genres</a>
+				<a href="/publisher">Publishers</a>
+			</nav>
+		</header>
 		<h1>Videogames</h1>
-		<a href="/genre">Genres</a>
-		<a href="/publisher">Publishers</a>
 		<a href="/catalog/game/create">New videogame</a>
 		<% for (let i = 0; i < allVideogames.length; i++) { %>
 		<h2><a href="<%= allVideogames[i].url %>"><%= allVideogames[i].title %></a></h2>

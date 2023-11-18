@@ -5,9 +5,14 @@
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
+		<header>
+			<nav class="navbar">
+				<a href="/catalog">Catalog</a>
+				<a href="/genre">Genres</a>
+				<a href="/publisher">Publishers</a>
+			</nav>
+		</header>
 		<h2>This is the videogame create page</h2>
-		<a href="/catalog/genre">Genres</a>
-		<a href="/catalog/publisher">Publishers</a>
 		<form action="/catalog/game/create" method="post" class="videogame-create">
 			<label for="title">*Title</label>
 			<input type="text" name="title" />

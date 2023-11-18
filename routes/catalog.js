@@ -6,7 +6,8 @@ const VideogameController = require('../controllers/videogameController')
 router.get('/', VideogameController.index)
 router.get('/game/create', VideogameController.videogameCreateGet)
 router.post('/game/create', VideogameController.videogameCreatePost)
-router.delete('/game/:id/delete', VideogameController.videogameDelete)
+router.get('/game/:id/delete', VideogameController.videogameDeleteGet)
+router.post('/game/:id/delete', VideogameController.videogameDeletePost)
 router.get('/game/:id', VideogameController.videogamePage)
 
 module.exports = router

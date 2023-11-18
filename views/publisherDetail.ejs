@@ -5,6 +5,13 @@
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
+		<header>
+			<nav class="navbar">
+				<a href="/catalog">Catalog</a>
+				<a href="/genre">Genres</a>
+				<a href="/publisher">Publishers</a>
+			</nav>
+		</header>
 		<h2 class="gamepage-title"><%= publisher.name %></h2>
 		<h2 class="gamepage-title"><%= publisher.formatted_foundation_date %></h2>
 		<div class="gamepage__top-container">
@@ -21,8 +28,6 @@
 		<p><%= videogames[index].description %></p>
 		<% } %>
 		<a href="<%=publisher.url%>/delete">Delete publisher</a>
-		<a href="/catalog/genre">Genres</a>
-		<a href="/catalog/publisher">Publishers</a>
 	</body>
 </html>
 

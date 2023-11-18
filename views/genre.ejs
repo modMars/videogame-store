@@ -5,9 +5,14 @@
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
+		<header>
+			<nav class="navbar">
+				<a href="/catalog">Catalog</a>
+				<a href="/genre">Genres</a>
+				<a href="/publisher">Publishers</a>
+			</nav>
+		</header>
 		<h1>Genres</h1>
-		<a href="/catalog/genre">Genres</a>
-		<a href="/catalog/publisher">Publishers</a>
 		<% for (let i = 0; i < genres.length; i++) { %>
 		<h2><a href="<%= genres[i].url %>"><%= genres[i].name %></a></h2>
 		<% } %>

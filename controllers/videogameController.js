@@ -13,8 +13,15 @@ exports.videogamePage = async function (req, res, next) {
 	res.render('videogamePage', { videogame: videogameObj })
 }
 
-exports.videogameDelete = async function (req, res, next) {
-	Videogame.findOneAndDelete({ id: res.params.id })
+exports.videogameDeleteGet = async function (req, res, next) {
+	const id = req.params.id
+	const videogameObj = await Videogame.findById(id).exec()
+	res.render('videogameDelete', { videogame: videogameObj })
+}
+
+exports.videogameDeletePost = async function (req, res, next) {
+	const id = req.params.id
+	Videogame.findByIdAndDelete(id).exec()
 	res.redirect('/catalog')
 }
 
@@ -79,7 +86,7 @@ exports.videogameCreatePost = [
 				errors: errors.array(),
 			})
 		} else {
-			// Data from form is valid. Save videogame
+			// Data from form is valid. Save book.
 			await videogame.save()
 			res.redirect(videogame.url)
 		}
