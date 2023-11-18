@@ -9,24 +9,24 @@
 		<a href="/catalog/genre">Genres</a>
 		<a href="/catalog/publisher">Publishers</a>
 		<form action="/catalog/game/create" method="post" class="videogame-create">
-			<label for="title">Title</label>
+			<label for="title">*Title</label>
 			<input type="text" name="title" />
-			<label for="price">Price</label>
+			<label for="price">*Price</label>
 			<input type="number" name="price" min="1" />
-			<label for="description">Description</label>
+			<label for="description">*Description</label>
 			<textarea name="description" cols="25" rows="3"></textarea>
 			<label for="release_date">Release Date</label>
 			<input type="date" name="release_date" />
 			<label for="publisher">Publisher</label>
 			<select name="publisher">
 				<% for( let index = 0; index < publishers.length; index++ ) { %>
-				<option value="<%= publishers[index].name %>"><%= publishers[index].name %></option>
+				<option value="<%= publishers[index]._id %>"><%= publishers[index].name %></option>
 				<% } %>
 			</select>
 			<label for="genre">Genre</label>
 			<select name="genre" multiple>
 				<% for( let index = 0; index < genres.length; index++ ) { %>
-				<option value="<%= genres[index].name %>"><%= genres[index].name %></option>
+				<option value="<%= genres[index]._id %>"><%= genres[index].name %></option>
 				<% } %>
 			</select>
 			<label for="stock">Stock</label>

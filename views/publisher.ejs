@@ -6,8 +6,9 @@
 	</head>
 	<body>
 		<h1>Publishers</h1>
-		<a href="/catalog/">Catalog</a>
+		<a href="/catalog">Catalog</a>
 		<a href="/genre">Genres</a>
+		<a href="/publisher/create">Create new publisher</a>
 		<% for (let i = 0; i < publishers.length; i++) { %>
 		<h2><a href="<%= publishers[i].url %>"><%= publishers[i].name %></a></h2>
 		<% } %>

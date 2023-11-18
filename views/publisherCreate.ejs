@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= title %></title>
+		<title>Create publisher</title>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
-		<h2>This is the videogame create page</h2>
+		<h2>Create a publisher</h2>
 		<a href="/genre">Genres</a>
 		<a href="/publisher">Publishers</a>
-		<form action="/genre/create" method="post" class="videogame-create">
+		<a href="/publisher/create">Create publisher</a>
+		<form action="/publisher/create" method="post" class="videogame-create">
 			<label for="name">*Name</label>
 			<input type="text" name="name" />
-			<label for="description">*Description</label>
-			<textarea name="description" cols="25" rows="3"></textarea>
+			<label for="foundation_date">*Date of foundation</label>
+			<input type="date" name="foundation_date" />
 			<button type="submit">Submit</button>
 		</form>
 	</body>

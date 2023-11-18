@@ -26,14 +26,62 @@ exports.videogameCreateGet = async function (req, res, next) {
 	res.render('videogameCreate', { title: 'Create videogame entry', publishers: publishers, genres: genre })
 }
 
-exports.videogameCreatePost = async function (req, res, next) {
-	const newVideogame = {
-		title: req.body.title,
-		price: req.body.price,
-		description: req.body.description,
-		release_date: req.body.release_date,
-		publisher: req.body.publisher,
-		stock: req.body.stock,
-		genre: req.body.genre,
-	}
-}
+exports.videogameCreatePost = [
+	// Convert the genre to an array.
+	(req, res, next) => {
+		if (!(req.body.genre instanceof Array)) {
+			if (typeof req.body.genre === 'undefined') req.body.genre = []
+			else req.body.genre = new Array(req.body.genre)
+		}
+		if (!(req.body.publisher instanceof Array)) {
+			if (typeof req.body.publisher === 'undefined') req.body.publisher = []
+			else req.body.publisher = new Array(req.body.publisher)
+		}
+		next()
+	},
+
+	// Validate and sanitize fields.
+	body('title', 'Title must not be empty.').trim().isLength({ min: 1 }).escape(),
+	body('price', 'Price must be higher than 1.').trim().isLength({ min: 1 }).escape(),
+	body('description', 'Description must not be empty.').trim().isLength({ min: 1 }).escape(),
+	body('release_date', 'Release date must be set').trim().isLength({ min: 1 }).escape(),
+	body('publisher.*').escape(),
+	body('genre.*').escape(),
+	body('stock', 'Stock amount must be higher than 1').trim().isLength({ min: 1 }).escape(),
+	// Process request after validation and sanitization.
+
+	async (req, res, next) => {
+		// Extract the validation errors from a request.
+		const errors = validationResult(req)
+
+		// Create a Book object with escaped and trimmed data.
+		const videogame = new Videogame({
+			title: req.body.title,
+			price: req.body.price,
+			description: req.body.description,
+			release_date: req.body.release_date,
+			publisher: req.body.publisher,
+			genre: req.body.genre,
+			stock: req.body.stock,
+		})
+
+		if (!errors.isEmpty()) {
+			// There are errors. Render form again with sanitized values/error messages.
+
+			// Get all authors and genres for form.
+			const [allPublishers, allGenres] = await Promise.all([Publisher.find().exec(), Genre.find().exec()])
+
+			res.render('videogameCreate', {
+				title: 'Create Videogame',
+				publishers: allPublishers,
+				genres: allGenres,
+				videogame: videogame,
+				errors: errors.array(),
+			})
+		} else {
+			// Data from form is valid. Save videogame
+			await videogame.save()
+			res.redirect(videogame.url)
+		}
+	},
+]
