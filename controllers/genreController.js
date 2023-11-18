@@ -49,3 +49,16 @@ exports.genreDetail = async function (req, res, next) {
 	const gamesArr = await Videogame.find({ genre: genreObj._id })
 	res.render('genreDetail', { genre: genreObj, videogames: gamesArr, gameCount: gamesArr.length })
 }
+
+exports.genreDeleteGet = async function (req, res, next) {
+	const id = req.params.id
+	const genreObj = await Genre.findById(id).exec()
+	const videogameCount = await Videogame.countDocuments({ genre: genreObj })
+	res.render('genreDelete', { genre: genreObj, game_count: videogameCount })
+}
+
+exports.genreDeletePost = async function (req, res, next) {
+	const id = req.params.id
+	Genre.findByIdAndDelete(id).exec()
+	res.redirect('/genre')
+}

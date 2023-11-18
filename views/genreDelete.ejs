@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Genre Delete</title>
+	</head>
+	<body>
+		<header>
+			<nav class="navbar">
+				<a href="/catalog">Catalog</a>
+				<a href="/genre">Genres</a>
+				<a href="/publisher">Publishers</a>
+			</nav>
+		</header>
+		<% if (game_count < 1) { %>
+		<h2>Are you sure you want to delete '<%= genre.name %>'</h2>
+		<form action="" method="post">
+			<button type="submit">Delete</button>
+			<a href="/publisher">Return</a>
+		</form>
+		<% } else { %>
+		<h2>You can't delete a publisher that is referenced in an existing videogame</h2>
+		<a href="/publisher">Return</a>
+		<% } %>
+	</body>
+</html>

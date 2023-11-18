@@ -13,6 +13,7 @@
 			</nav>
 		</header>
 		<h1>Genres</h1>
+		<a href="/genre/create">Create new genre</a>
 		<% for (let i = 0; i < genres.length; i++) { %>
 		<h2><a href="<%= genres[i].url %>"><%= genres[i].name %></a></h2>
 		<% } %>
