@@ -8,32 +8,20 @@ exports.index = async function (req, res, next) {
 	res.render('catalog', { allVideogames: allVideogames })
 }
 
-exports.videogamePage = async function (req, res, next) {
+exports.videogame_detail = async function (req, res, next) {
 	const videogameObj = await Videogame.findById(req.params.id).exec()
-	res.render('videogamePage', { videogame: videogameObj })
+	res.render('videogame_detail', { videogame: videogameObj })
 }
 
-exports.videogameDeleteGet = async function (req, res, next) {
-	const id = req.params.id
-	const videogameObj = await Videogame.findById(id).exec()
-	res.render('videogameDelete', { videogame: videogameObj })
-}
-
-exports.videogameDeletePost = async function (req, res, next) {
-	const id = req.params.id
-	Videogame.findByIdAndDelete(id).exec()
-	res.redirect('/catalog')
-}
-
-exports.videogameCreateGet = async function (req, res, next) {
+exports.videogame_create_get = async function (req, res, next) {
 	const publishers = await Publisher.find().sort({ name: 1 }).exec()
 	const genre = await Genre.find().sort({ name: 1 }).exec()
 	console.log(publishers, genre)
 
-	res.render('videogameCreate', { title: 'Create videogame entry', publishers: publishers, genres: genre })
+	res.render('videogame_create', { title: 'Create videogame entry', publishers: publishers, genres: genre })
 }
 
-exports.videogameCreatePost = [
+exports.videogame_create_post = [
 	// Convert the genre to an array.
 	(req, res, next) => {
 		if (!(req.body.genre instanceof Array)) {
@@ -77,7 +65,6 @@ exports.videogameCreatePost = [
 
 			// Get all authors and genres for form.
 			const [allPublishers, allGenres] = await Promise.all([Publisher.find().exec(), Genre.find().exec()])
-
 			res.render('videogameCreate', {
 				title: 'Create Videogame',
 				publishers: allPublishers,
@@ -92,3 +79,24 @@ exports.videogameCreatePost = [
 		}
 	},
 ]
+
+exports.videogame_update_get = async function (req, res, next) {
+	const videogameObj = await Videogame.findById(req.params.id).exec()
+	const publishers = await Publisher.find().sort({ name: 1 }).exec()
+	const genres = await Genre.find().sort({ name: 1 }).exec()
+	res.render('videogame_update', { videogame: videogameObj, publishers: publishers, genres: genres })
+}
+
+exports.videogame_update_post = []
+
+exports.videogame_delete_get = async function (req, res, next) {
+	const id = req.params.id
+	const videogameObj = await Videogame.findById(id).exec()
+	res.render('videogame_delete', { videogame: videogameObj })
+}
+
+exports.videogame_delete_post = async function (req, res, next) {
+	const id = req.params.id
+	Videogame.findByIdAndDelete(id).exec()
+	res.redirect('/catalog')
+}

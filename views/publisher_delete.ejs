@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Genre Delete</title>
+		<title>Publisher Delete</title>
 	</head>
 	<body>
 		<header>
@@ -14,7 +14,7 @@
 			</nav>
 		</header>
 		<% if (game_count < 1) { %>
-		<h2>Are you sure you want to delete '<%= genre.name %>'</h2>
+		<h2>Are you sure you want to delete '<%= publisher.name %>'?</h2>
 		<form action="" method="post">
 			<button type="submit">Delete</button>
 			<a href="/publisher">Return</a>

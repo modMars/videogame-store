@@ -4,10 +4,10 @@ const VideogameController = require('../controllers/videogameController')
 
 /* GET users listing. */
 router.get('/', VideogameController.index)
-router.get('/game/create', VideogameController.videogameCreateGet)
-router.post('/game/create', VideogameController.videogameCreatePost)
-router.get('/game/:id/delete', VideogameController.videogameDeleteGet)
-router.post('/game/:id/delete', VideogameController.videogameDeletePost)
-router.get('/game/:id', VideogameController.videogamePage)
+router.get('/game/create', VideogameController.videogame_create_get)
+router.post('/game/create', VideogameController.videogame_create_post)
+router.get('/game/:id/delete', VideogameController.videogame_delete_get)
+router.post('/game/:id/delete', VideogameController.videogame_delete_post)
+router.get('/game/:id', VideogameController.videogame_detail)
 
 module.exports = router

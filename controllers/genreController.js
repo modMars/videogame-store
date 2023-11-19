@@ -7,11 +7,18 @@ exports.index = async function (req, res, next) {
 	res.render('genre', { genres: genres })
 }
 
-exports.genreCreateGet = async function (req, res, next) {
-	res.render('genreCreate', { title: 'Create Genre' })
+exports.genre_detail = async function (req, res, next) {
+	const id = req.params.id
+	const genreObj = await Genre.findById(id).exec()
+	const gamesArr = await Videogame.find({ genre: genreObj._id })
+	res.render('genre_detail', { genre: genreObj, videogames: gamesArr, gameCount: gamesArr.length })
 }
 
-exports.genreCreatePost = [
+exports.genre_create_get = async function (req, res, next) {
+	res.render('genre_create', { title: 'Create Genre' })
+}
+
+exports.genre_create_post = [
 	// Validate and sanitize fields.
 	body('name', 'Name must not be empty.').trim().isLength({ min: 1 }).escape(),
 	body('description', 'Description must not be empty.').trim().isLength({ min: 1 }).escape(),
@@ -30,7 +37,7 @@ exports.genreCreatePost = [
 		if (!errors.isEmpty()) {
 			// There are errors. Render form again with sanitized values/error messages.
 
-			res.render('genreCreate', {
+			res.render('genre_create', {
 				title: 'Create Genre',
 				genre: genre,
 				errors: errors.array(),
@@ -43,21 +50,14 @@ exports.genreCreatePost = [
 	},
 ]
 
-exports.genreDetail = async function (req, res, next) {
-	const id = req.params.id
-	const genreObj = await Genre.findById(id).exec()
-	const gamesArr = await Videogame.find({ genre: genreObj._id })
-	res.render('genreDetail', { genre: genreObj, videogames: gamesArr, gameCount: gamesArr.length })
-}
-
-exports.genreDeleteGet = async function (req, res, next) {
+exports.genre_delete_get = async function (req, res, next) {
 	const id = req.params.id
 	const genreObj = await Genre.findById(id).exec()
 	const videogameCount = await Videogame.countDocuments({ genre: genreObj })
-	res.render('genreDelete', { genre: genreObj, game_count: videogameCount })
+	res.render('genre_delete', { genre: genreObj, game_count: videogameCount })
 }
 
-exports.genreDeletePost = async function (req, res, next) {
+exports.genre_delete_post = async function (req, res, next) {
 	const id = req.params.id
 	Genre.findByIdAndDelete(id).exec()
 	res.redirect('/genre')

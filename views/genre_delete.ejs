@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Videogame Delete</title>
+		<title>Genre Delete</title>
 	</head>
 	<body>
 		<header>
@@ -13,10 +13,15 @@
 				<a href="/publisher">Publishers</a>
 			</nav>
 		</header>
-		<h2>Are you sure you want to delete '<%= videogame.title %>'?</h2>
+		<% if (game_count < 1) { %>
+		<h2>Are you sure you want to delete '<%= genre.name %>'</h2>
 		<form action="" method="post">
 			<button type="submit">Delete</button>
-			<a href="/publisher">Return</a>
+			<a href="/genre">Return</a>
 		</form>
+		<% } else { %>
+		<h2>You can't delete a publisher that is referenced in an existing videogame</h2>
+		<a href="/genre">Return</a>
+		<% } %>
 	</body>
 </html>

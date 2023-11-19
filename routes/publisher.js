@@ -4,10 +4,10 @@ const PublisherController = require('../controllers/publisherController')
 
 /* GET users listing. */
 router.get('/', PublisherController.index)
-router.get('/create', PublisherController.publisherCreateGet)
-router.post('/create', PublisherController.publisherCreatePost)
-router.get('/:id/delete', PublisherController.publisherDeleteGet)
-router.post('/:id/delete', PublisherController.publisherDeletePost)
-router.get('/:id', PublisherController.publisherDetail)
+router.get('/create', PublisherController.publisher_create_get)
+router.post('/create', PublisherController.publisher_create_post)
+router.get('/:id/delete', PublisherController.publisher_delete_get)
+router.post('/:id/delete', PublisherController.publisher_delete_post)
+router.get('/:id', PublisherController.publisher_detail)
 
 module.exports = router

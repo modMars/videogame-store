@@ -7,11 +7,18 @@ exports.index = async function (req, res, next) {
 	res.render('publisher', { publishers: publishers })
 }
 
-exports.publisherCreateGet = async function (req, res, next) {
-	res.render('publisherCreate')
+exports.publisher_detail = async function (req, res, next) {
+	const id = req.params.id
+	const publisherObj = await Publisher.findById(id).exec()
+	const gamesArr = await Videogame.find({ publisher: publisherObj._id })
+	res.render('publisher_detail', { publisher: publisherObj, videogames: gamesArr, gameCount: gamesArr.length })
 }
 
-exports.publisherCreatePost = [
+exports.publisher_create_get = async function (req, res, next) {
+	res.render('publisher_create')
+}
+
+exports.publisher_create_post = [
 	// Validate and sanitize fields.
 	body('name', 'Name must not be empty.').trim().isLength({ min: 1 }).escape(),
 	body('foundation_date', 'Foundation date shouldnt be empty.').trim().isLength({ min: 1 }).escape(),
@@ -42,21 +49,14 @@ exports.publisherCreatePost = [
 	},
 ]
 
-exports.publisherDetail = async function (req, res, next) {
-	const id = req.params.id
-	const publisherObj = await Publisher.findById(id).exec()
-	const gamesArr = await Videogame.find({ publisher: publisherObj._id })
-	res.render('publisherDetail', { publisher: publisherObj, videogames: gamesArr, gameCount: gamesArr.length })
-}
-
-exports.publisherDeleteGet = async function (req, res, next) {
+exports.publisher_delete_get = async function (req, res, next) {
 	const id = req.params.id
 	const publisherObj = await Publisher.findById(id).exec()
 	const videogameCount = await Videogame.countDocuments({ publisher: publisherObj })
-	res.render('publisherDelete', { game_count: videogameCount, publisher: publisherObj })
+	res.render('publisher_delete', { game_count: videogameCount, publisher: publisherObj })
 }
 
-exports.publisherDeletePost = async function (req, res, next) {
+exports.publisher_delete_post = async function (req, res, next) {
 	const id = req.params.id
 	await Publisher.findByIdAndDelete(id).exec()
 	res.redirect(`/publisher`)

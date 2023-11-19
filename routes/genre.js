@@ -4,10 +4,10 @@ const GenreController = require('../controllers/genreController')
 
 /* GET users listing. */
 router.get('/', GenreController.index)
-router.get('/create', GenreController.genreCreateGet)
-router.post('/create', GenreController.genreCreatePost)
-router.get('/:id', GenreController.genreDetail)
-router.get('/:id/delete', GenreController.genreDeleteGet)
-router.post('/:id/delete', GenreController.genreDeletePost)
+router.get('/create', GenreController.genre_create_get)
+router.post('/create', GenreController.genre_create_post)
+router.get('/:id', GenreController.genre_detail)
+router.get('/:id/delete', GenreController.genre_delete_get)
+router.post('/:id/delete', GenreController.genre_delete_post)
 
 module.exports = router
