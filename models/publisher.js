@@ -15,4 +15,8 @@ PublisherSchema.virtual('formatted_foundation_date').get(function () {
 	return DateTime.fromJSDate(this.foundation_date).toLocaleString(DateTime.DATE_MED)
 })
 
+PublisherSchema.virtual('foundation_date_for_form').get(function () {
+	return DateTime.fromJSDate(this.foundation_date).toFormat('yyyy-MM-dd')
+})
+
 module.exports = mongoose.model('Publisher', PublisherSchema)

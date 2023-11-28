@@ -17,6 +17,8 @@
 		<div class="gamepage__top-container">
 			<p class="gamepage-price"><%= gameCount %> <%= publisher.name %> games</p>
 		</div>
+		<a href="<%=publisher.url%>/delete">Delete publisher</a>
+		<a href="<%=publisher.url%>/update">Update publisher</a>
 		<% for( let index = 0; index < videogames.length; index++ ) { %>
 		<div class="game-card">
 			<h2 class="gamepage-title"><%= videogames[index].title %></h2>
@@ -27,7 +29,6 @@
 		</div>
 		<p><%= videogames[index].description %></p>
 		<% } %>
-		<a href="<%=publisher.url%>/delete">Delete publisher</a>
 	</body>
 </html>
 

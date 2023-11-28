@@ -12,13 +12,23 @@
 				<a href="/publisher">Publishers</a>
 			</nav>
 		</header>
-		<h2>This is the videogame create page</h2>
-		<form action="/genre/create" method="post" class="videogame-create">
+		<h2><%= title %></h2>
+		<% if (update) { %>
+		<form method="post" class="videogame-create">
+			<label for="name">*Name</label>
+			<input type="text" name="name" value="<%= genre.name %>" />
+			<label for="description">*Description</label>
+			<textarea name="description" cols="25" rows="3"><%= genre.description %></textarea>
+			<button type="submit">Update</button>
+		</form>
+		<% } else {%>
+		<form method="post" class="videogame-create">
 			<label for="name">*Name</label>
 			<input type="text" name="name" />
 			<label for="description">*Description</label>
 			<textarea name="description" cols="25" rows="3"></textarea>
-			<button type="submit">Submit</button>
+			<button type="submit">Create</button>
 		</form>
+		<% } %>
 	</body>
 </html>

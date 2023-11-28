@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Create publisher</title>
+		<title><% title %></title>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
@@ -12,14 +12,24 @@
 				<a href="/publisher">Publishers</a>
 			</nav>
 		</header>
-		<h2>Create a publisher</h2>
+		<h2><% title %></h2>
 		<a href="/publisher/create">Create publisher</a>
-		<form action="/publisher/create" method="post" class="videogame-create">
+		<% if (update) { %>
+		<form method="post" class="videogame-create">
+			<label for="name">*Name</label>
+			<input type="text" name="name" value="<%= publisher.name %>" />
+			<label for="foundation_date">*Date of foundation</label>
+			<input type="date" name="foundation_date" value="<%= publisher.foundation_date_for_form %>" />
+			<button type="submit">Update</button>
+		</form>
+		<% } else {%>
+		<form method="post" class="videogame-create">
 			<label for="name">*Name</label>
 			<input type="text" name="name" />
 			<label for="foundation_date">*Date of foundation</label>
 			<input type="date" name="foundation_date" />
-			<button type="submit">Submit</button>
+			<button type="submit">Create</button>
 		</form>
+		<% } %>
 	</body>
 </html>

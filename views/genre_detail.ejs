@@ -18,6 +18,7 @@
 		</div>
 		<p><%= genre.description %></p>
 		<a href="<%= genre.url %>/delete">Delete genre</a>
+		<a href="<%= genre.url %>/update">Update genre</a>
 		<% for( let index = 0; index < videogames.length; index++ ) { %>
 		<div class="game-card">
 			<h2 class="gamepage-title"><%= videogames[index].title %></h2>
