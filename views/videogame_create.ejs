@@ -12,8 +12,43 @@
 				<a href="/publisher">Publishers</a>
 			</nav>
 		</header>
-		<h2>This is the videogame create page</h2>
-		<form action="/catalog/game/create" method="post" class="videogame-create">
+		<h2><%= title %></h2>
+		<% if (update) { %>
+		<form method="post" class="videogame-create">
+			<label for="title">*Title</label>
+			<input type="text" name="title" value="<%= videogame.title %>" />
+			<label for="price">*Price</label>
+			<input type="number" name="price" value="<%= videogame.price %>" />
+			<label for="description">*Description</label>
+			<textarea name="description" cols="25" rows="3"><%= videogame.description %></textarea>
+			<label for="release_date">Release Date</label>
+			<input type="date" name="release_date" value="<%= videogame.release_date_for_form %>" />
+			<label for="publisher">Publisher</label>
+			<select name="publisher">
+				<% for( let index = 0; index < publishers.length; index++ ) { %>
+				<!-- When listing all the genres, if they're found in the videogame's genre array it'll automatically select them -->
+				<% if (videogame.publisher.equals(publishers[index]._id)) { %>
+				<option value="<%= publishers[index]._id %>" selected><%= publishers[index].name %></option>
+				<% } else{ %>
+				<option value="<%= publishers[index]._id %>"><%= publishers[index].name %></option>
+				<% } %> <% } %>
+			</select>
+			<label for="genre">Genre</label>
+			<select name="genre" multiple>
+				<% for( let index = 0; index < genres.length; index++ ) { %>
+				<!-- When listing all the genres, if they're found in the videogame's genre array it'll automatically select them -->
+				<% if (videogame.genre.includes(genres[index]._id)) { %>
+				<option value="<%= genres[index]._id %>" selected="selected"><%= genres[index].name %></option>
+				<% } else{ %>
+				<option value="<%= genres[index]._id %>"><%= genres[index].name %></option>
+				<% } %> <% } %>
+			</select>
+			<label for="stock">Stock</label>
+			<input type="number" name="stock" min="0" value="<%= videogame.stock %>" />
+			<button type="submit">Submit</button>
+		</form>
+		<%} else { %>
+		<form method="post" class="videogame-create">
 			<label for="title">*Title</label>
 			<input type="text" name="title" />
 			<label for="price">*Price</label>
@@ -38,5 +73,6 @@
 			<input type="number" name="stock" min="0" />
 			<button type="submit">Submit</button>
 		</form>
+		<% } %>
 	</body>
 </html>

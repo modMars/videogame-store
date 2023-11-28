@@ -23,4 +23,8 @@ VideogameSchema.virtual('formatted_release_date').get(function () {
 	return DateTime.fromJSDate(this.release_date).toLocaleString(DateTime.DATE_MED)
 })
 
+VideogameSchema.virtual('release_date_for_form').get(function () {
+	return DateTime.fromJSDate(this.release_date).toFormat('yyyy-MM-dd')
+})
+
 module.exports = mongoose.model('VideoGame', VideogameSchema)
